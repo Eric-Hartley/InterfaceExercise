@@ -13,10 +13,10 @@ namespace InterfaceExercise
         public bool HasSpareTire { get; set; }
 
         //Inherited Properties from IVehicle
-        int IVehicle.NumberOfWheels { get; set; }
-        string IVehicle.EngineType { get; set; }
-        int IVehicle.NumberOfDoors { get; set; }
-        string IVehicle.GasType { get; set; }
+        string IVehicle.Make { get; set; }
+        string IVehicle.Model { get; set; }
+        int IVehicle.Year { get; set; }
+        string IVehicle.EngineSize { get; set; }
 
         //Inherited Properties from ICompany
         string ICompany.Name { get; set; }
