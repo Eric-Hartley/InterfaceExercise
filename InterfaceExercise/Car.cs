@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,23 +9,57 @@ namespace InterfaceExercise
 {
     internal class Car : IVehicle, ICompany
     {
-        //Native Properties
-        public bool HasTrunk { get; set; }
-        public bool HasSpareTire { get; set; }
+        //instantiating
+        public Car() { }
+
 
         //Inherited Properties from IVehicle
-        string IVehicle.Make { get; set; }
-        string IVehicle.Model { get; set; }
-        int IVehicle.Year { get; set; }
-        string IVehicle.EngineSize { get; set; }
+        public string Make { get; set; } = "Make";
+        public string Model { get; set; } = "Model";
+        public int SeatCount { get; set; } = 0;
+        public double EngineSize { get; set; } = 0;
+
 
         //Inherited Properties from ICompany
-        string ICompany.Name { get; set; }
-        string ICompany.Logo { get; set; }
+        public string Name { get; set; } = "Insert Company Name";
+        public string Motto { get; set; } = "Insert Motto";
+        public bool HasChangedGears { get ; set; }
+        
 
-        public static void GetAnalysis(IVehicle car, ICompany company)
+        public void Drive()
         {
-            Console.WriteLine($"");
+            Console.WriteLine($"{GetType().Name} driving");
+        }
+
+        public void Park()
+        {
+            if (HasChangedGears == true)
+            {
+                Console.WriteLine($"{GetType().Name} parked");
+                HasChangedGears = false;
+            }
+            else
+            {
+                Console.WriteLine("Change gear");
+            }
+        }
+
+        public void Reverse()
+        {
+            if(HasChangedGears == true)
+            {
+                Console.WriteLine($"{GetType().Name} reversing");
+                HasChangedGears = false;
+            }
+            else
+            {
+                Console.WriteLine("Change gear");
+            }
+            
+        }
+        public void ChangeGear(bool isChanged)
+        {
+            HasChangedGears = isChanged;
         }
     }
 }

@@ -8,21 +8,68 @@ namespace InterfaceExercise
 {
     internal class Truck : IVehicle, ICompany
     {
-        //Instantiating
+        //instantiating
         public Truck() { }
 
         //Native Properties
-        public bool HasBed {  get; set; }
-        public string TypeOfSeats { get; set; }
+        public bool HasFourWheelDrive { get; set; } = true;
+
 
         //Inherited Properties from IVehicle
-        string IVehicle.Make { get; set; }
-        string IVehicle.Model { get; set; }
-        int IVehicle.Year { get; set; }
-        string IVehicle.EngineSize { get; set; }
+        public string Make { get; set; } = "Make";
+        public string Model { get; set; } = "Model";
+        public int SeatCount { get; set; } = 0;
+        public double EngineSize { get; set; } = 0;
+
 
         //Inherited Properties from ICompany
-        string ICompany.Name { get; set; }
-        string ICompany.Logo { get; set; }
+        public string Name { get; set; } = "Insert Company Name";
+        public string Motto { get; set; } = "Insert Motto";
+        public bool HasChangedGears { get; set; }
+
+
+        public void Drive()
+        {
+            if (HasFourWheelDrive == true)
+            {
+                Console.WriteLine($"{GetType().Name} driving in 4WD mode");
+            }
+            else
+            {
+                Console.WriteLine($"{GetType().Name} driving");
+            }
+            
+        }
+
+        public void Park()
+        {
+            if (HasChangedGears == true)
+            {
+                Console.WriteLine($"{GetType().Name} parked");
+                HasChangedGears = false;
+            }
+            else
+            {
+                Console.WriteLine("Change gear");
+            }
+        }
+
+        public void Reverse()
+        {
+            if (HasChangedGears == true)
+            {
+                Console.WriteLine($"{GetType().Name} reversing");
+                HasChangedGears = false;
+            }
+            else
+            {
+                Console.WriteLine("Change gear");
+            }
+
+        }
+        public void ChangeGear(bool isChanged)
+        {
+            HasChangedGears = isChanged;
+        }
     }
 }

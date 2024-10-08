@@ -8,19 +8,57 @@ namespace InterfaceExercise
 {
     internal class SUV : IVehicle, ICompany
     {
-        //Native Properties
-        public int NumberOfSeats { get; set; }
-        public int NumberOfRows { get; set; }
+        // Instantiating
+        public SUV() { }
+
 
         //Inherited Properties from IVehicle
-        int IVehicle.NumberOfWheels { get; set; }
-        string IVehicle.EngineType { get; set; }
-        int IVehicle.NumberOfDoors { get; set; }
-        string IVehicle.GasType { get; set; }
+        public string Make { get; set; } = "Make";
+        public string Model { get; set; } = "Model";
+        public int SeatCount { get; set; } = 0;
+        public double EngineSize { get; set; } = 0;
+
 
         //Inherited Properties from ICompany
-        string ICompany.Name { get; set; }
-        string ICompany.Logo {  get; set; }    
+        public string Name { get; set; } = "Insert Company Name";
+        public string Motto { get; set; } = "Insert Motto";
+        public bool HasChangedGears { get; set; }
 
+
+        public void Drive()
+        {
+            Console.WriteLine($"{GetType().Name} driving");
+        }
+
+        public void Park()
+        {
+            if (HasChangedGears == true)
+            {
+                Console.WriteLine($"{GetType().Name} parked");
+                HasChangedGears = false;
+            }
+            else
+            {
+                Console.WriteLine("Change gear");
+            }
+        }
+
+        public void Reverse()
+        {
+            if (HasChangedGears == true)
+            {
+                Console.WriteLine($"{GetType().Name} reversing");
+                HasChangedGears = false;
+            }
+            else
+            {
+                Console.WriteLine("Change gear");
+            }
+
+        }
+        public void ChangeGear(bool isChanged)
+        {
+            HasChangedGears = isChanged;
+        }
     }
 }
